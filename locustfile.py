@@ -1,4 +1,4 @@
-from locust import HttpLocust, TaskSet
+from locust import HttpUser, TaskSet
 import os
 
 
@@ -26,7 +26,7 @@ class TestCase(TaskSet):
     tasks = mytasks
 
 
-class WebsiteUser(HttpLocust):
+class WebsiteUser(HttpUser):
     task_set = TestCase
     host = os.getenv('HOSTNAME')
     min_wait = int(os.getenv('MIN_WAIT')) if os.getenv('MIN_WAIT') else 5000
